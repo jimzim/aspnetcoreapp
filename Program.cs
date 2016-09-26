@@ -23,7 +23,7 @@ namespace aspnetcoreapp
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseStartup<Startup>()
-                .UseUrls("http://*:8080")
+                .UseUrls("http://*:8080") // Use Port 8080 For OpenShift
                 .Build();
 
             host.Run();

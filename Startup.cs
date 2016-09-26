@@ -13,7 +13,9 @@ namespace aspnetcoreapp
             app.Run(context =>
             {
                 var connectionString = "Server=tcp:jzdotnetsql.database.windows.net,1433;Initial Catalog=jzdotnets;Persist Security Info=False;User ID=jzadmin;Password=jzSqlserver1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-                var data = "Test";
+                // var connectionString = "Server=tcp:ignitesqlserverqmabuhr73zepu.westus.cloudapp.azure.com,1433;Initial Catalog=Blogging;Persist Security Info=False;User ID=igniteadmin;Password=P@ssw0rd4Ignite;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;";
+                
+                var sqldata = "";
 
                 try {
 
@@ -28,9 +30,7 @@ namespace aspnetcoreapp
                         {
                             while (reader.Read())
                             {
-                                data += String.Format("{0}, {1}", reader["BlogId"], reader["Url"]);
-                                //Console.WriteLine(String.Format("{0}, {1}",
-                                // reader["BlogId"], reader["Url"]));
+                                sqldata += String.Format("{0}, {1}\n", reader["BlogId"], reader["Url"]);
                             }
                         }
                         catch(Exception ex)
@@ -39,7 +39,7 @@ namespace aspnetcoreapp
                             return context.Response.WriteAsync("Error: " + ex.ToString());
                         }
                     }
-                    return context.Response.WriteAsync("Hello from ASP.NET Core!" + data);
+                    return context.Response.WriteAsync("Hello from ASP.NET Core! \n" + sqldata);
 
                 } catch(Exception ex) {
                     return context.Response.WriteAsync("Error: " + ex.ToString());

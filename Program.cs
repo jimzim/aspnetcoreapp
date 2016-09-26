@@ -23,9 +23,11 @@ namespace aspnetcoreapp
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseStartup<Startup>()
+                .UseUrls("http://*:8080")
                 .Build();
 
             host.Run();
+
         }
     }
 }
